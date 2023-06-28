@@ -2,46 +2,37 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Sistema de Login</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="login.php" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-        <br>
-        <label for="password">Senha:</label>
-        <input type="password" name="password" required>
-        <br>
-        <input type="submit" value="Entrar">
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+                <form action="login.php" method="POST">
+                    <div>
+                        <div class="mb-3">
+                            <label>Usuário</label>
+                            <input type="text" name="usuario" calss="form-control">
+
+                        </div>
+                    </div>
+                        <div class="mb-3">
+                            <label>Senha</label>
+                            <input type="password" name="senha" calss="form-control">
+                        </div>
+                    <div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primery">Enviar</button>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
-<?php
-    require_once 'config.php';
-
-    // Verifica se o formulário foi submetido
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // Realize a verificação das credenciais com os dados armazenados no banco de dados
-
-        // Exemplo de verificação básica apenas para fins de demonstração
-        if ($email === 'usuario@example.com' && $password === 'senha') {
-            // Autenticação bem-sucedida, cria a sessão do usuário
-            $_SESSION['user'] = [
-                'email' => $email
-                // Outras informações do usuário, se necessário
-            ];
-
-            // Redireciona para a página protegida
-            header('Location: pagina_protegida.php');
-            exit();
-        } else {
-            // Credenciais inválidas, exibe uma mensagem de erro
-            echo "Credenciais inválidas!";
-        }
-    }
-?>

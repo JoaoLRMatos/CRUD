@@ -52,11 +52,6 @@
                         case "editar":
                             include("editar.php");
                         break;
-                        case "logado":
-                            include("logado.php");
-                        break;
-                        case "login":
-                            include("login.php");
                         default:
                             print "Bem vindo!";
 
