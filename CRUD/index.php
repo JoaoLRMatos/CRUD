@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Produtos</title>
-    <link href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
   </head>
   <body>
@@ -38,7 +38,6 @@
             <div class="row">
                 <div class="col mt-5">
                 <?php
-                // conectando as configurações do banco de dados 
                     include("config.php");
                     switch(@$_REQUEST["page"]){
                         case "cadastro":
@@ -50,12 +49,20 @@
                         case "salvar":
                             include("salvar-produtos.php");
                         break;
+                        case "editar":
+                            include("editar.php");
+                        break;
+                        case "logado":
+                            include("logado.php");
+                        break;
+                        case "login":
+                            include("login.php");
                         default:
                             print "Bem vindo!";
 
                     }
 
-        ?>
+                ?>
                 </div>
             </div>
         </div>
