@@ -1,4 +1,4 @@
-<h1> Cadastrar Produtos</h1>
+<h1> Cadastrar Produto</h1>
 <form action="?page=salvar" method="POST">
     <input type="hidden" name="acao" value="cadastrar">
     <div class="mb-3">

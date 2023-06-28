@@ -1,4 +1,4 @@
-<h1> Cadastrar Produtos</h1>
+<h1> Editar Produto</h1>
 <?php 
     $sql = "SELECT * FROM produtos WHERE id=".$_REQUEST["id"];
     $res = $conn->query($sql);

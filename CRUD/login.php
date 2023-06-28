@@ -1,38 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Sistema de Login</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4">
-                <form action="login.php" method="POST">
-                    <div>
-                        <div class="mb-3">
-                            <label>Usuário</label>
-                            <input type="text" name="usuario" calss="form-control">
+<?php
 
-                        </div>
-                    </div>
-                        <div class="mb-3">
-                            <label>Senha</label>
-                            <input type="password" name="senha" calss="form-control">
-                        </div>
-                    <div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primery">Enviar</button>
+    //iniciando login
+    session_start();
+    if (empty($_POST) or (empty($_POST["usuario"]) or (empty($_POST["senha"])))){
+        print "<script>location.href='index.php';</script>";
+    }
 
+    include('config.php');
 
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    $usuario = $_POST["usuario"];
+    $senha = $_POST["senha"];
+
+    $sql = "SELECT * FROM users 
+            WHERE usuario = '{$usuario}'
+            AND senha = '{$senha}'";
+
+    $res = $conn->query($sql) or die($conn->error);
+
+    $row = $res->fetch_object();
+
+    $qtd = $res->num_rows;
+
+    //caso o acesso bata com o banco de dados sera direcionado para home.php
+    //caso não bata com o banco de dados sera imprimira Usuario e/ou senha incorreto(s)
+    if($qtd > 0){
+        $_SESSION["usuario"] = $usuario;
+        $_SESSION["senha"] = $senha;
+        print "<script>location.href='home.php';</script>";
+    }else{
+        print "<script>alert('Usuario e/ou senha incorreto(s)');</script>";
+        print "<script>location.href='index.php';</script>";
+    }
+?>
